@@ -8,6 +8,7 @@ class AppTheme {
   static final AppTextStyle _textStyle = AppTextStyle.instance;
 
   static ThemeData light = ThemeData(
+    fontFamily: 'Poppins',
     brightness: Brightness.light,
     primaryColor: AppColor.primaryColor,
     backgroundColor: AppColor.primaryColor,
@@ -33,6 +34,7 @@ class AppTheme {
   );
 
   static ThemeData dark = ThemeData(
+    fontFamily: 'Poppins',
     brightness: Brightness.dark,
     backgroundColor: AppColor.primaryColorDark,
     scaffoldBackgroundColor: AppColor.primaryColorDark,
@@ -49,8 +51,8 @@ class AppTheme {
       titleSmall: _textStyle.titleSmall.copyWith(color: AppColor.secondaryColorDark),
       titleMedium: _textStyle.titleMedium.copyWith(color: AppColor.secondaryColorDark),
       labelLarge: _textStyle.labelLarge.copyWith(color: AppColor.secondaryColorDark),
-      labelMedium: _textStyle.labelMedium.copyWith(color: AppColor.secondaryColorDark),
-      labelSmall: _textStyle.labelSmall.copyWith(color: AppColor.secondaryColorDark),
+      labelMedium: _textStyle.labelMedium.copyWith(color: Colors.white),
+      labelSmall: _textStyle.labelSmall.copyWith(color: AppColor.attrColor),
       bodyLarge: _textStyle.bodyLarge.copyWith(color: AppColor.secondaryColorDark),
       bodyMedium: _textStyle.bodyMedium.copyWith(color: AppColor.secondaryColorDark),
       bodySmall: _textStyle.bodySmall.copyWith(color: AppColor.attrColor),

@@ -7,6 +7,7 @@ class AppColor {
   static Color nameColor = const Color(0xFF262F56);
   static Color maleColor= const Color(0xFF006AF6);
   static Color femaleColor = const Color(0xFFEB5757);
+  static Color petCardBgDark = const Color(0xFF162544);
   static Color secondaryColorDark = const Color(0xFFF5CAC9);
   static Color cardBgColor = const Color(0xFFDDDDDD);
   static Color cardBgColorDark = const Color(0xFF162544);

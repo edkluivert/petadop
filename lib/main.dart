@@ -24,7 +24,7 @@ class MyApp extends StatelessWidget {
         ],
         child: Builder(builder: (context){
       final themeMode = context.watch<ThemeCubit>().state.themeMode;
-      return GetMaterialApp(
+      return MaterialApp(
         debugShowCheckedModeBanner: false,
         title: "Petadop",
         theme: AppTheme.light,

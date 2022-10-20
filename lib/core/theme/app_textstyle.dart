@@ -15,9 +15,9 @@ class AppTextStyle {
     fontWeight: FontWeight.w400,
   );
   TextStyle displaySmall = TextStyle(
-    color: AppColor.secondaryColor,
-    fontSize: 36,
-    fontWeight: FontWeight.bold,
+    color: AppColor.nameColor,
+    fontSize: 16,
+    fontWeight: FontWeight.w400,
   );
   TextStyle headlineLarge = TextStyle(
     color: AppColor.secondaryColor,
@@ -50,15 +50,18 @@ class AppTextStyle {
   );
   TextStyle labelLarge = TextStyle(
     color: AppColor.secondaryColor,
-    fontSize: 14,
+    fontSize: 16,
+    fontWeight: FontWeight.w700
   );
-  TextStyle labelMedium = TextStyle(
-    color: AppColor.secondaryColor,
-    fontSize: 12,
+  TextStyle labelMedium = const TextStyle(
+    color: Colors.white,
+    fontSize: 16,
+    fontWeight: FontWeight.w400
   );
   TextStyle labelSmall = TextStyle(
-    color: AppColor.secondaryColor,
-    fontSize: 11,
+    color: AppColor.attrColor,
+    fontSize: 10,
+    fontWeight: FontWeight.w400
   );
   TextStyle bodyLarge = TextStyle(
     color: AppColor.secondaryColor,
@@ -73,7 +76,7 @@ class AppTextStyle {
   TextStyle bodySmall = TextStyle(
     color: AppColor.secondaryColor,
     fontSize: 10,
-    fontWeight: FontWeight.w400
+    fontWeight: FontWeight.w300
   );
 }
 
