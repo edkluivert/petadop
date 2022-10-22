@@ -27,7 +27,7 @@ class AppTextStyle {
   TextStyle headlineMedium = TextStyle(
     color: AppColor.secondaryColor,
     fontSize: 14,
-    fontWeight: FontWeight.w700,
+    fontWeight: FontWeight.w600,
   );
   TextStyle headlineSmall = TextStyle(
     color: AppColor.secondaryColor,

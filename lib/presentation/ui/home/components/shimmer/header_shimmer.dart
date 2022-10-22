@@ -1,8 +1,9 @@
+
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart';
 import 'package:shimmer/shimmer.dart';
-import '../../../../../core/theme/cubit/theme_cubit.dart';
+
+
 import '../../../../../core/utils/utils.dart';
 
 class HeaderShimmer extends StatelessWidget {
@@ -12,68 +13,41 @@ class HeaderShimmer extends StatelessWidget {
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
     var theme = Theme.of(context);
-    return Padding(
-      padding: const EdgeInsets.only(right: 26),
+    return Shimmer.fromColors(
+      baseColor: Colors.grey[300]!,
+      highlightColor: Colors.grey[100]!,
+      period: const Duration(milliseconds: 1500),
+      direction : ShimmerDirection.ltr,
+      loop: 0,
       child: SizedBox(
         width: size.width,
+        height: 100,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                SizedBox(
-                  width: 30,
-                  height: 5,
-                  child: Shimmer.fromColors(
-                    baseColor: Colors.grey[300]!,
-                    highlightColor: Colors.grey[100]!,
-                    child: const Text(
-                      'Shimmer',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        fontSize: 40.0,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ),
+                Container(
+                  height: 10,
+                  width: 150,
+                  color: Colors.white,
                 ),
                 const SizedBox(
                   height: 5,
                 ),
-                SizedBox(
-                  width: 30,
-                  height: 5,
-                  child: Shimmer.fromColors(
-                    baseColor: Colors.grey[300]!,
-                    highlightColor: Colors.grey[100]!,
-                    child: const Text(
-                      'Shimmer',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        fontSize: 40.0,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ),
+                Container(
+                  height: 10,
+                  width: 170,
+                  color: Colors.white,
                 ),
                 const SizedBox(
                   height: 35,
                 ),
-                SizedBox(
-                  width: 30,
-                  height: 5,
-                  child: Shimmer.fromColors(
-                    baseColor: Colors.grey[300]!,
-                    highlightColor: Colors.grey[100]!,
-                    child: const Text(
-                      'Shimmer',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        fontSize: 40.0,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ),
+                Container(
+                  height: 10,
+                  width: 150,
+                  color: Colors.white,
                 ),
                 const SizedBox(
                   height: 20,
@@ -83,25 +57,7 @@ class HeaderShimmer extends StatelessWidget {
             const SizedBox(
               width: 52,
             ),
-            BlocBuilder<ThemeCubit, ThemeState>(builder: (context, state) {
-              return GestureDetector(
-                onTap: () {
-                  context.read<ThemeCubit>().changeThemeMode(
-                        state.themeMode == ThemeMode.light
-                            ? ThemeMode.dark
-                            : ThemeMode.light,
-                      );
-                },
-                child: SvgPicture.asset(
-                  Utils.getIconPath('bulb'),
-                  color: state.themeMode == ThemeMode.light
-                      ? theme.primaryColorDark
-                      : theme.primaryColor,
-                  width: 24,
-                  height: 24,
-                ),
-              );
-            })
+
           ],
         ),
       ),
