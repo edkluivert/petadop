@@ -5,21 +5,15 @@ import 'package:petadop/core/constants/constants.dart';
 import 'package:petadop/core/utils/utils.dart';
 import 'package:petadop/presentation/ui/detail/components/pet_attr_card.dart';
 
+import '../../../../core/model/pet_model.dart';
 import '../../../../core/theme/app_color.dart';
 import '../../../../core/theme/cubit/theme_cubit.dart';
 
 class DetailMobileLayout extends StatelessWidget {
-  int imageBgColor;
-  String image;
-  String name;
-  String distance;
-  String gender;
-  String attr;
-  String timeUploaded;
+  final PetModel petModel;
 
   DetailMobileLayout({Key? key,
-    required this.imageBgColor,required this.image,
-    required this.name, required this.attr, required this.distance, required this.gender, required this.timeUploaded
+    required this.petModel
   }) : super(key: key);
 
   @override
@@ -56,7 +50,7 @@ class DetailMobileLayout extends StatelessWidget {
                     child: Container(
                       width: MediaQuery.of(context).size.width,
                       decoration: BoxDecoration(
-                        color:Color(imageBgColor)
+                        color:Color(petModel.cardBgColor)
                       ),
                     ),
                   )
@@ -73,17 +67,17 @@ class DetailMobileLayout extends StatelessWidget {
                           children: [
                             Column(
                               children: [
-                                Text(name,style: theme.textTheme.bodyLarge,),
+                                Text(petModel.name,style: theme.textTheme.bodyLarge,),
                                 const SizedBox(height: 17,),
                                 Wrap(
                                   alignment: WrapAlignment.spaceBetween,
                                   children: [
                                     SvgPicture.asset(Utils.getIconPath('pin')),
-                                    Text(distance, style: theme.textTheme.bodyMedium,)
+                                    Text(petModel.distance, style: theme.textTheme.bodyMedium,)
                                   ],
                                 ),
                                 const SizedBox(height: 10,),
-                                Text(distance,style: theme.textTheme.bodySmall,)
+                                Text(petModel.timeUpload,style: theme.textTheme.bodySmall,)
 
                               ],
                             ),
@@ -93,10 +87,10 @@ class DetailMobileLayout extends StatelessWidget {
                                 width: 53,
                                 height: 25,
                                 decoration: BoxDecoration(
-                                    color: gender == 'male'?AppColor.maleColor.withOpacity(0.10):AppColor.femaleColor.withOpacity(0.10),
+                                    color: petModel.gender == 'male'?AppColor.maleColor.withOpacity(0.10):AppColor.femaleColor.withOpacity(0.10),
                                     borderRadius: BorderRadius.circular(31)
                                 ),
-                                child: Text(gender, style: gender == 'male'?theme.textTheme.titleMedium:theme.textTheme.displayMedium,),
+                                child: Text(petModel.gender, style: petModel.gender == 'male'?theme.textTheme.titleMedium:theme.textTheme.displayMedium,),
                               ),
                             ),
                           ],

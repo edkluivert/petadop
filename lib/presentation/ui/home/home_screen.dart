@@ -1,28 +1,37 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart';
 import 'package:petadop/core/utils/utils.dart';
-import 'package:petadop/core/widgets/responsive_screen.dart';
+import 'package:petadop/core/widgets/custom_responsive_screen.dart';
+import 'package:petadop/presentation/controller/home_controller.dart';
 import 'package:petadop/presentation/ui/home/components/home_mobile_layout.dart';
+import 'package:petadop/presentation/ui/home/components/shimmer/header_shimmer.dart';
+import 'package:petadop/presentation/ui/home/components/shimmer/items_shimmer.dart';
 
 import '../../../core/constants/constants.dart';
 import '../../../core/theme/cubit/theme_cubit.dart';
 import 'components/home_desktop_layout.dart';
 import 'components/home_tablet_layout.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends GetView<HomeController> {
   const HomeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    var size = MediaQuery.of(context).size;
+    var size = MediaQuery
+        .of(context)
+        .size;
     var theme = Theme.of(context);
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 19),
         child: Stack(
           children: [
-            Padding(
+            Obx(() =>
+            controller.callComplete.value == false
+                ? const HeaderShimmer()
+                : Padding(
               padding: const EdgeInsets.only(right: 26),
               child: SizedBox(
                 width: size.width,
@@ -59,32 +68,38 @@ class HomeScreen extends StatelessWidget {
                     ),
                     BlocBuilder<ThemeCubit, ThemeState>(
                         builder: (context, state) {
-                      return GestureDetector(
-                        onTap: (){
-                          context.read<ThemeCubit>().changeThemeMode(
-                            state.themeMode == ThemeMode.light
-                                ? ThemeMode.dark
-                                : ThemeMode.light,
+                          return GestureDetector(
+                            onTap: () {
+                              context.read<ThemeCubit>().changeThemeMode(
+                                state.themeMode == ThemeMode.light
+                                    ? ThemeMode.dark
+                                    : ThemeMode.light,
+                              );
+                            },
+                            child: SvgPicture.asset(
+                              Utils.getIconPath('bulb'),
+                              color: state.themeMode == ThemeMode.light
+                                  ? theme.primaryColorDark
+                                  : theme.primaryColor,
+                              width: 24,
+                              height: 24,
+                            ),
                           );
-                        },
-                        child: SvgPicture.asset(
-                          Utils.getIconPath('bulb'), color: state.themeMode == ThemeMode.light?theme.primaryColorDark:theme.primaryColor,
-                          width: 24,
-                          height: 24,
-                        ),
-                      );
-                    })
+                        })
                   ],
                 ),
               ),
-            ),
-            const Positioned(
-              top: 80,
-              child: ResponsiveScreen(
-                mobile: HomeMobileLayout(),
-                tablet: HomeTabletLayout(),
-                dekstop: HomeDesktopLayout(),
-              ),
+            )),
+
+            Obx(() =>controller.callComplete.value == false ? const ItemShimmer():
+              const Positioned(
+                top: 80,
+                child: CustomResponsiveScreen(
+                  mobile: HomeMobileLayout(),
+                  tablet: HomeTabletLayout(),
+                  dekstop: HomeDesktopLayout(),
+                ),
+              )
             ),
           ],
         ),

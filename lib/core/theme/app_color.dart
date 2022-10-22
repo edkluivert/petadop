@@ -15,6 +15,10 @@ class AppColor {
   static Color btnDarkColor = const Color(0xFF147EFF);
   static Color transparent = Colors.transparent;
 
+
+
+
+
   static MaterialColor primarySwatch = const MaterialColor(
     0xFF489E83,
     {

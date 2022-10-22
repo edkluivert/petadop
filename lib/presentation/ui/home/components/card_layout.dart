@@ -23,12 +23,13 @@ class CardLayout extends StatelessWidget {
   Widget build(BuildContext context) {
     var theme = Theme.of(context);
     return SizedBox(
-      height: 100,
+      height: 120,
       width: MediaQuery.of(context).size.width,
       child: BlocBuilder<ThemeCubit, ThemeState>(
         builder: (context, state) {
         return Card(
           color: state.themeMode == ThemeMode.light?Colors.white:AppColor.petCardBgDark,
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
           child: Row(
             children: [
               Container(

@@ -5,6 +5,7 @@ import 'package:responsive_framework/responsive_wrapper.dart';
 
 import 'core/theme/app_theme.dart';
 import 'core/theme/cubit/theme_cubit.dart';
+import 'di/app_binding.dart';
 
 void main() {
   runApp(const MyApp());
@@ -24,12 +25,13 @@ class MyApp extends StatelessWidget {
         ],
         child: Builder(builder: (context){
       final themeMode = context.watch<ThemeCubit>().state.themeMode;
-      return MaterialApp(
+      return GetMaterialApp(
         debugShowCheckedModeBanner: false,
         title: "Petadop",
         theme: AppTheme.light,
         darkTheme: AppTheme.dark,
         themeMode: themeMode,
+        initialBinding: AppBinding(),
         home: const MyHomePage(title: 'Flutter Demo Home Page'),
         builder: (context, child) {
           return ResponsiveWrapper.builder(
