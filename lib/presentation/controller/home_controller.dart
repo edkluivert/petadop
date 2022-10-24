@@ -1,30 +1,47 @@
-import 'package:animated_theme_switcher/animated_theme_switcher.dart';
-import 'package:flutter/material.dart';
+
 import 'package:get/get.dart';
-import 'package:get_storage/get_storage.dart';
 import 'package:petadop/core/model/pet_model.dart';
-import 'package:petadop/core/theme/app_color.dart';
+import 'package:petadop/presentation/controller/theme_controller.dart';
 
-import '../../core/theme/app_theme.dart';
 
-import '../../core/theme/theme_service.dart';
-
-class HomeController extends GetxController{
+class HomeController extends GetxController with GetSingleTickerProviderStateMixin{
 
 
   var callComplete = false.obs;
-  // late final GetStorage _getStorage;
-  // var isDarkMode = false.obs;
-  //
-  // @override
-  // void onInit(){
-  //   super.onInit();
-  //   _getStorage = GetStorage();
-  //   isDarkMode.value = _getStorage.read(GetStorageThemeKey.isDarkMode);
-  // }
+  final ThemeController themeController = Get.find<ThemeController>();
+  RxBool isDarkMode = false.obs; // Current Theme Stage
+  Rx<String> currentModeName = ''.obs;
 
 
 
+  @override
+  void onInit() {
+    //Getting theme Stage from ThemeController when homeView initialized
+    isDarkMode.value = themeController.isDarkTheme;
+    currentModeName.value = themeController.isDarkTheme ? 'Dark' : 'Light';
+
+
+    super.onInit();
+  }
+
+  // Change Theme  Method That will call From HomeView
+  void changeAppTheme() => _changeTheme();
+
+  // Toggling the Theme
+  bool toggleTheme() {
+    _changeTheme();
+    return isDarkMode.value;
+  }
+
+
+  // Calling the changeTheme Method from ThemeController
+  void _changeTheme() {
+    themeController.changeTheme(
+      isDarkMode: isDarkMode,
+      modeName: currentModeName,
+    );
+
+  }
 
 
   void mimickApiCall(){
@@ -46,18 +63,5 @@ class HomeController extends GetxController{
     PetModel('dog5', pet10Color, 'Sparky', '125m away', '2 yrs | Playful', 'male', '10 min ago'),
     PetModel('dog6', pet11Color, 'Sparky', '125m away', '2 yrs | Playful', 'male', '10 min ago'),
   ];
-
-  // void changeTheme(BuildContext context) {
-  //   final theme = Get.isDarkMode ? AppTheme.light : AppTheme.dark;
-  //   ThemeSwitcher.of(context)!.changeTheme(theme: theme);
-  //   ThemeService().
-  //   // if (_getStorage.read(GetStorageThemeKey.isDarkMode)) {
-  //   //   _getStorage.write(GetStorageThemeKey.isDarkMode, false);
-  //   //   isDarkMode.value = false;
-  //   // } else {
-  //   //   _getStorage.write(GetStorageThemeKey.isDarkMode, true);
-  //   //   isDarkMode.value = true;
-  //   // }
-  // }
 
 }

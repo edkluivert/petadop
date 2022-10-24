@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-import 'package:petadop/core/theme/theme_service.dart';
 import 'package:petadop/core/utils/utils.dart';
 import 'package:petadop/core/widgets/custom_responsive_screen.dart';
 import 'package:petadop/presentation/controller/home_controller.dart';
+import 'package:petadop/presentation/controller/theme_controller.dart';
 import 'package:petadop/presentation/ui/home/components/home_mobile_layout.dart';
 import 'package:petadop/presentation/ui/home/components/shimmer/header_shimmer.dart';
 import 'package:petadop/presentation/ui/home/components/shimmer/items_shimmer.dart';
@@ -15,7 +15,7 @@ import 'components/home_tablet_layout.dart';
 
 
 class HomeScreen extends StatefulWidget {
- const HomeScreen({super.key});
+  const HomeScreen({super.key});
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
@@ -24,10 +24,12 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
 
   final HomeController controller = Get.find();
+  final ThemeController themeController = Get.find();
+
 
   @override
   void initState() {
-    // TODO: implement initState
+
     super.initState();
     controller.mimickApiCall();
   }
@@ -50,7 +52,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     : Padding(
                   padding: const EdgeInsets.only(right: 26),
                   child: AspectRatio(
-                    aspectRatio: 15/5.1,
+                    aspectRatio: 15 / 5.1,
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -89,29 +91,30 @@ class _HomeScreenState extends State<HomeScreen> {
                         ),
                         GestureDetector(
                           onTap: () {
-                            ThemeService().switchTheme();
+                            controller.changeAppTheme();
                           },
-                          child: SvgPicture.asset(
-                            Utils.getIconPath('bulb'),
-                            color: Get.isDarkMode
-                                ? theme.primaryColor
-                                : theme.primaryColorDark,
-                         //   width: 24,
-                         //   height: 24,
-                          ),
+                          child: Obx(() {
+                            return SvgPicture.asset(
+                              Utils.getIconPath('bulb'),
+                              color: controller.isDarkMode.value
+                                  ? theme.primaryColor
+                                  : theme.primaryColorDark,
+                            );
+                          }),
                         ),
                       ],
                     ),
                   ),
                 )),
 
-                Obx(() =>controller.callComplete.value == false ?
-                const ItemShimmer():
-                  const CustomResponsiveScreen(
-                    mobile: HomeMobileLayout(),
-                    tablet: HomeTabletLayout(),
-                    dekstop: HomeDesktopLayout(),
-                  )
+                Obx(() =>
+                controller.callComplete.value == false ?
+                const ItemShimmer() :
+                const CustomResponsiveScreen(
+                  mobile: HomeMobileLayout(),
+                  tablet: HomeTabletLayout(),
+                  dekstop: HomeDesktopLayout(),
+                )
                 ),
                 const SizedBox(height: 30,)
               ],

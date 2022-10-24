@@ -6,6 +6,7 @@ import 'package:petadop/core/utils/utils.dart';
 import 'package:petadop/presentation/controller/home_controller.dart';
 
 import '../../../../core/model/pet_model.dart';
+import '../../detail/detail_screen.dart';
 
 
 class CardLayout extends StatelessWidget {
@@ -28,7 +29,7 @@ class CardLayout extends StatelessWidget {
         child: InkWell(
           borderRadius: BorderRadius.circular(16),
           onTap: (){
-
+             Get.to(DetailScreen(petModel: petModel,));
           },
           child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 12),

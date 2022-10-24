@@ -17,8 +17,6 @@ class AppColor {
 
 
 
-
-
   static MaterialColor primarySwatch = const MaterialColor(
     0xFF489E83,
     {
@@ -34,4 +32,5 @@ class AppColor {
       900: Color(0xFF2b5f4f),
     },
   );
+
 }

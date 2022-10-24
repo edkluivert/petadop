@@ -2,18 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import 'package:get/get.dart';
-import 'package:get_storage/get_storage.dart';
+import 'package:petadop/presentation/controller/theme_controller.dart';
 import 'package:petadop/presentation/ui/home/home_screen.dart';
 import 'package:responsive_framework/responsive_wrapper.dart';
 
 import 'core/theme/app_theme.dart';
-
-import 'core/theme/theme_service.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'di/app_binding.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await GetStorage.init();
+  await Hive.initFlutter(); // Initialize Hive
+  await Hive.openBox('settings');
   runApp(const MyApp());
 }
 
@@ -36,12 +36,14 @@ class MyApp extends StatelessWidget {
     );
     SystemChrome.setSystemUIOverlayStyle(dark);
 
+    final ThemeController themeController = Get.put(ThemeController());
+
     return  GetMaterialApp(
         debugShowCheckedModeBanner: false,
         title: "Petadop",
         theme: AppTheme.light,
         darkTheme: AppTheme.dark,
-        themeMode: ThemeService().theme,
+        themeMode: themeController.themeStateFromHiveSettingBox,
         initialBinding: AppBinding(),
         home: const HomeScreen(),
         builder: (context, child) {
