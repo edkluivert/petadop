@@ -7,7 +7,7 @@ class ItemShimmer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Shimmer.fromColors(
-      baseColor: Colors.grey[300]!,
+      baseColor: Colors.grey[400]!,
       highlightColor: Colors.grey[100]!,
       period: const Duration(milliseconds: 1500),
       direction : ShimmerDirection.ltr,

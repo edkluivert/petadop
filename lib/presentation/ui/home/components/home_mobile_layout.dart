@@ -13,8 +13,8 @@ class HomeMobileLayout extends GetView<HomeController> {
       aspectRatio: 3/7,
       child: LiveList(
         shrinkWrap: true,
-       physics: const NeverScrollableScrollPhysics(),
-       itemBuilder: (context, index, animation){
+        physics: const NeverScrollableScrollPhysics(),
+        itemBuilder: (context, index, animation){
          return FadeTransition(
            opacity: animation,
            child: SlideTransition(

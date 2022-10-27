@@ -4,7 +4,6 @@ import 'package:get/get.dart';
 import 'package:petadop/core/theme/app_color.dart';
 import 'package:petadop/core/utils/utils.dart';
 import 'package:petadop/presentation/controller/home_controller.dart';
-
 import '../../../../core/model/pet_model.dart';
 import '../../detail/detail_screen.dart';
 
@@ -68,7 +67,7 @@ class CardLayout extends StatelessWidget {
                       ],
                     ),
                   ),
-                 const SizedBox(width: 20,),
+                  const SizedBox(width: 20,),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.end,
                     mainAxisAlignment: MainAxisAlignment.center,

@@ -75,8 +75,8 @@ class AppTextStyle {
   );
   TextStyle bodySmall = TextStyle(
     color: AppColor.secondaryColor,
-    fontSize: 10,
-    fontWeight: FontWeight.w300
+    fontSize: 12,
+    fontWeight: FontWeight.w400
   );
 }
 

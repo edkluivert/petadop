@@ -15,12 +15,10 @@ class DetailScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return  Scaffold(
-      body: SingleChildScrollView(
-        child: CustomResponsiveScreen(
-          mobile: DetailMobileLayout(petModel: petModel,),
-          tablet: const DetailTabletLayout(),
-          dekstop: const DetailDesktopLayout(),
-        ),
+      body: CustomResponsiveScreen(
+        mobile: DetailMobileLayout(petModel: petModel),
+        tablet: const DetailTabletLayout(),
+        dekstop: const DetailDesktopLayout(),
       ),
     );
   }

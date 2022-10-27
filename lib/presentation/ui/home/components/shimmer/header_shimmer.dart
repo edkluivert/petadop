@@ -14,7 +14,7 @@ class HeaderShimmer extends StatelessWidget {
     var size = MediaQuery.of(context).size;
     var theme = Theme.of(context);
     return Shimmer.fromColors(
-      baseColor: Colors.grey[300]!,
+      baseColor: Colors.grey[400]!,
       highlightColor: Colors.grey[100]!,
       period: const Duration(milliseconds: 1500),
       direction : ShimmerDirection.ltr,

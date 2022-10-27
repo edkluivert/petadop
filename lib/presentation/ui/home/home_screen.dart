@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:petadop/core/theme/theme_service.dart';
 import 'package:petadop/core/utils/utils.dart';
 import 'package:petadop/core/widgets/custom_responsive_screen.dart';
 import 'package:petadop/presentation/controller/home_controller.dart';
-import 'package:petadop/presentation/controller/theme_controller.dart';
 import 'package:petadop/presentation/ui/home/components/home_mobile_layout.dart';
 import 'package:petadop/presentation/ui/home/components/shimmer/header_shimmer.dart';
 import 'package:petadop/presentation/ui/home/components/shimmer/items_shimmer.dart';
@@ -24,14 +24,14 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
 
   final HomeController controller = Get.find();
-  final ThemeController themeController = Get.find();
+
 
 
   @override
   void initState() {
 
     super.initState();
-    controller.mimickApiCall();
+    controller.fakeApiCall();
   }
 
 
@@ -50,7 +50,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 controller.callComplete.value == false
                     ? const HeaderShimmer()
                     : Padding(
-                  padding: const EdgeInsets.only(right: 26),
+                  padding: const EdgeInsets.only(right: 10),
                   child: AspectRatio(
                     aspectRatio: 15 / 5.1,
                     child: Row(
@@ -91,16 +91,14 @@ class _HomeScreenState extends State<HomeScreen> {
                         ),
                         GestureDetector(
                           onTap: () {
-                            controller.changeAppTheme();
+                            ThemeService().switchTheme();
                           },
-                          child: Obx(() {
-                            return SvgPicture.asset(
+                          child:SvgPicture.asset(
                               Utils.getIconPath('bulb'),
-                              color: controller.isDarkMode.value
+                              color: Get.isDarkMode
                                   ? theme.primaryColor
                                   : theme.primaryColorDark,
-                            );
-                          }),
+                            )
                         ),
                       ],
                     ),
