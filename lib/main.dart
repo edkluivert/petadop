@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:petadop/core/routes/app_pages.dart';
 import 'package:petadop/presentation/ui/home/home_screen.dart';
 import 'package:responsive_framework/responsive_wrapper.dart';
 import 'core/theme/app_theme.dart';
@@ -41,7 +42,9 @@ class MyApp extends StatelessWidget {
         darkTheme: AppTheme.dark,
         themeMode: ThemeService().theme,
         initialBinding: AppBinding(),
+        smartManagement: SmartManagement.full,
         home: const HomeScreen(),
+        getPages: AppPages.list,
         builder: (context, child) {
           return ResponsiveWrapper.builder(child, defaultScale: true,
             breakpoints: const [

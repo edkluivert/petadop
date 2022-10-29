@@ -5,6 +5,10 @@ import 'package:petadop/core/theme/app_color.dart';
 import 'package:petadop/core/utils/utils.dart';
 import 'package:petadop/presentation/controller/home_controller.dart';
 import '../../../../core/model/pet_model.dart';
+import '../../../../core/routes/app_routes.dart';
+import '../../../../core/widgets/line_splash_factory.dart';
+import '../../../../core/widgets/my_wave.dart';
+import '../../../../core/widgets/splash_paint.dart';
 import '../../detail/detail_screen.dart';
 
 
@@ -16,6 +20,8 @@ class CardLayout extends StatelessWidget {
 
    final HomeController controller = Get.find();
 
+
+
   @override
   Widget build(BuildContext context) {
     var theme = Theme.of(context);
@@ -26,9 +32,15 @@ class CardLayout extends StatelessWidget {
         color: Get.isDarkMode? AppColor.petCardBgDark:Colors.white,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
         child: InkWell(
+          splashColor: Colors.green.withOpacity(0.10),
+          splashFactory: const WaveSplashFactory(20.0,20.0),
           borderRadius: BorderRadius.circular(16),
           onTap: (){
-             Get.to(DetailScreen(petModel: petModel,));
+            Future.delayed(const Duration(milliseconds: 200)).then((value){
+             Get.toNamed(AppRoutes.detail, arguments: DetailScreen(petModel: petModel));
+            });
+           // Get.toNamed(AppRoutes.detail, arguments: DetailScreen(petModel: petModel));
+
           },
           child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 12),

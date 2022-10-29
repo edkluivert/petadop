@@ -4,7 +4,7 @@ import 'package:petadop/core/model/pet_model.dart';
 
 
 
-class HomeController extends GetxController with GetSingleTickerProviderStateMixin{
+class HomeController extends GetxController{
 
 
   var callComplete = false.obs;
